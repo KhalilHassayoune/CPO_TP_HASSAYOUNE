@@ -21,7 +21,11 @@ public class TP1_convertisseur_Hassayoune {
         return kelvin;
 
     }
+    public static double KelvinVersCelcius(double kelvin) {
 
+        double tCelcius = kelvin - 273.15;
+        return tCelcius;
+    }
     public static double FarenheitVersCelcius(double tFarenheit) {
 
         double Celcius = (tFarenheit - 32) / 1.8;
