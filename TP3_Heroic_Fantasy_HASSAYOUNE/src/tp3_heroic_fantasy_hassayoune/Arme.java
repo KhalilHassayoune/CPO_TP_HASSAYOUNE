@@ -14,10 +14,19 @@ public class Arme {
      public Arme (String nomArme,int niveauArme){
          this.nomArme = nomArme;
          if (niveauArme> 100)niveauArme=100;
-         this.niveauArme=niveauArme;
+         this.niveauArme=niveauArme;}
+
+    @Override
+    public String toString() {
+        return "Arme{" + "nomArme=" + nomArme + ", niveauArme=" + niveauArme + '}';
+    }
+
+
+
+         
     
      }
      
+
     
-    
-}
+
