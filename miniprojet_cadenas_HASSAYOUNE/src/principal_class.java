@@ -16,7 +16,7 @@ public class principal_class extends javax.swing.JFrame {
     private Combinaison jeu;
    
     private int score = 0;
-private int nbTentativesRestantes = 5;
+private int nbTentativesRestantes = 6;
 
     
     
@@ -248,59 +248,61 @@ texte_chiffre_3.setText("" + jeu.getCombiTestee()[3]);
     }//GEN-LAST:event_down_chiffre_4ActionPerformed
 
     private void bouton_recommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_recommencerActionPerformed
-texte_chiffre_0.setText("0");
-texte_chiffre_1.setText("0");
-texte_chiffre_2.setText("0");
-texte_chiffre_3.setText("0");// TODO add your handling code here:
-for (int i = 0; i < 5; i++) {
-        jeu.getCombiTestee()[i] = 0;
-    }
-
-    // Réinitialiser le score
-    score = 0;
-    texte_score.setText("" + score);
-
-    // Réinitialiser le nombre de tentatives
-    nbTentativesRestantes = 6;
-    texte_tentatives.setText("Tentatives restantes : " + nbTentativesRestantes);
-
-    // Réinitialiser les labels de comparaison
+                                             
+                                                
+    // Réinitialiser les chiffres testés
+    texte_chiffre_0.setText("0");
+    texte_chiffre_1.setText("0");
+    texte_chiffre_2.setText("0");
+    texte_chiffre_3.setText("0");
+    
+    // Réinitialiser les résultats
     texte_nb_chiffres_exacts.setText("0");
     texte_nb_chiffres_haut.setText("0");
     texte_nb_chiffres_bas.setText("0");
-
-    // Générer une nouvelle combinaison secrète
+    
+    // Réinitialiser le score
+    score = 0;
+    texte_score.setText("" + score);
+    
+    // Réinitialiser le nombre de tentatives
+    nbTentativesRestantes = 6;
+    
+    
+    // Générer une nouvelle combinaison
     jeu.genererCombiAleat();
+
+
 
     }//GEN-LAST:event_bouton_recommencerActionPerformed
 
     private void bouton_testerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_testerActionPerformed
                                             
+
+                             
     // Comparer la combinaison testée
-    
-    // Vérifier si le joueur a encore des tentatives
-    if (nbTentativesRestantes > 0) {
+    int[] resultats = jeu.comparerCombi(); // [nbExact, nbTropHaut, nbTropBas]
 
-        int[] resultats = jeu.comparerCombi(); // renvoie [nbExact, nbTropHaut, nbTropBas]
+    // Mettre à jour les labels pour afficher le résultat
+    texte_nb_chiffres_exacts.setText("" + resultats[0]);
+    texte_nb_chiffres_haut.setText("" + resultats[1]);
+    texte_nb_chiffres_bas.setText("" + resultats[2]);
 
-        // Met à jour les labels pour afficher le résultat
-        texte_nb_chiffres_exacts.setText("" + resultats[0]);
-        texte_nb_chiffres_haut.setText("" + resultats[1]);
-        texte_nb_chiffres_bas.setText("" + resultats[2]);
+    // Augmenter le score
+    score++;
+    texte_score.setText("" + score);
 
-        // Met à jour le score
-        score++;
-        texte_score.setText("" + score);
+    // Décrémenter les tentatives restantes
+    nbTentativesRestantes--;
+   
 
-        // Décrémente après l'affichage pour que la première tentative compte comme 1
-        nbTentativesRestantes--;
-        
-
-        // Si plus de tentatives, réinitialiser automatiquement
-        if (nbTentativesRestantes <= 0) {
-            bouton_recommencerActionPerformed(evt); // réinitialise tout
-        }
+    // Si plus de tentatives, réinitialiser après la 5ᵉ tentative
+    if (nbTentativesRestantes == 0) {
+        bouton_recommencerActionPerformed(evt); // réinitialise tout
     }
+
+
+
 
 
     }//GEN-LAST:event_bouton_testerActionPerformed
