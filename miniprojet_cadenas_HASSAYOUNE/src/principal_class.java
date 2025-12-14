@@ -10,8 +10,16 @@
 public class principal_class extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(principal_class.class.getName());
+
     Combinaison combiTestee;
     Combinaison combiSecrete;
+    private Combinaison jeu;
+   
+    private int score = 0;
+private int nbTentativesRestantes = 5;
+
+    
+    
     
 
     /**
@@ -20,9 +28,9 @@ public class principal_class extends javax.swing.JFrame {
     public principal_class() {
     
         int a,b,c,d;
-        initComponents();
+       
       
-         Combinaison jeu = new Combinaison();
+         
         a=(int) (Math.random()*10);
         b=(int) (Math.random()*10);
         c=(int) (Math.random()*10);
@@ -31,7 +39,8 @@ public class principal_class extends javax.swing.JFrame {
         jeu = new Combinaison(); // création de l’objet
         jeu.genererCombiAleat();
    
-        
+        texte_score.setText("" + score);
+
         
 }
     
@@ -183,10 +192,10 @@ public class principal_class extends javax.swing.JFrame {
                         getContentPane().add(texte_nb_chiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 43, -1));
 
                         texte_score.setText("0");
-                        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 219, 43, -1));
+                        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, 43, -1));
 
                         texte_tentatives.setText("tentatives");
-                        getContentPane().add(texte_tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(573, 191, 68, -1));
+                        getContentPane().add(texte_tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 220, 60, -1));
 
                         texte_intro.setText("Trouvez le bon code en moins de 5 tentatives :");
                         getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 18, 268, -1));
@@ -195,70 +204,47 @@ public class principal_class extends javax.swing.JFrame {
                     }// </editor-fold>//GEN-END:initComponents
 
     private void up_chiffre_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_2ActionPerformed
- jeu.augmenter                             // ajouter 1
-texte_chiffre_1.setText("+jeu.getCombiTestee()[3]);        // TODO add your handling code here:
+
+jeu.augmenterChiffre(1);
+texte_chiffre_1.setText("" + jeu.getCombiTestee()[1]);// TODO add your handling code here:
     }//GEN-LAST:event_up_chiffre_2ActionPerformed
 
     private void up_chiffre_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_3ActionPerformed
-int valeurActuelle = Integer.parseInt(texte_chiffre_2.getText());  // récupérer la valeur actuelle
-if (valeurActuelle < 9) {        // si on n'a pas encore atteint 9
-    valeurActuelle++;            // on ajoute 1
-    };                                              // ajouter 1
-texte_chiffre_2.setText(String.valueOf(valeurActuelle));          // TODO add your handling code here:
+jeu.augmenterChiffre(2);
+texte_chiffre_2.setText("" + jeu.getCombiTestee()[2]);       // TODO add your handling code here:
     }//GEN-LAST:event_up_chiffre_3ActionPerformed
 
     private void up_chiffre_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_4ActionPerformed
-       int valeurActuelle = Integer.parseInt(texte_chiffre_3.getText());  // récupérer la valeur actuelle
-if (valeurActuelle < 9) {        // si on n'a pas encore atteint 9
-    valeurActuelle++;            // on ajoute 1
-    };                                              // ajouter 1
-texte_chiffre_3.setText(String.valueOf(valeurActuelle));//  // TODO add your handling code here:
+  jeu.augmenterChiffre(3);
+texte_chiffre_3.setText("" + jeu.getCombiTestee()[3]);  // TODO add your handling code here:
     }//GEN-LAST:event_up_chiffre_4ActionPerformed
 
     private void up_chiffre_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_up_chiffre_1ActionPerformed
-         int valeurActuelle = Integer.parseInt(texte_chiffre_0.getText());  // récupérer la valeur actuelle
-if (valeurActuelle < 9) {        // si on n'a pas encore atteint 9
-    valeurActuelle++;            // on ajoute 1
-    };                                              // ajouter 1
-texte_chiffre_0.setText(String.valueOf(valeurActuelle));// TODO add your handling code here:
-jeu.augmenterChiffre(0);
+      jeu.augmenterChiffre(0);
+texte_chiffre_0.setText("" + jeu.getCombiTestee()[0]);
     }//GEN-LAST:event_up_chiffre_1ActionPerformed
 
     private void down_chiffre_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_1ActionPerformed
-int valeurActuelle = Integer.parseInt(texte_chiffre_0.getText());
-        if (valeurActuelle > 0) {    // si on n'est pas déjà à 0
-    valeurActuelle--;        // on retire 1
-}
-
-texte_chiffre_0.setText(Integer.toString(valeurActuelle));        // TODO add your handling code here:
+jeu.diminuerChiffre(0);
+texte_chiffre_0.setText("" + jeu.getCombiTestee()[0]); // TODO add your handling code here:
     }//GEN-LAST:event_down_chiffre_1ActionPerformed
 
     private void down_chiffre_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_2ActionPerformed
-int valeurActuelle = Integer.parseInt(texte_chiffre_1.getText());
-        if (valeurActuelle > 0) {    // si on n'est pas déjà à 0
-    valeurActuelle--;        // on retire 1
-}
-
-texte_chiffre_1.setText(Integer.toString(valeurActuelle));          // TODO add your handling code here:
+jeu.diminuerChiffre(1);
+texte_chiffre_1.setText("" + jeu.getCombiTestee()[1]);       // TODO add your handling code here:
     }//GEN-LAST:event_down_chiffre_2ActionPerformed
 
     private void down_chiffre_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_3ActionPerformed
-int valeurActuelle = Integer.parseInt(texte_chiffre_2.getText());
-        if (valeurActuelle > 0) {    // si on n'est pas déjà à 0
-    valeurActuelle--;        // on retire 1
-}
-
-texte_chiffre_2.setText(Integer.toString(valeurActuelle));          // TODO add your handling code here:
+jeu.diminuerChiffre(2);
+texte_chiffre_2.setText("" + jeu.getCombiTestee()[2]);        // TODO add your handling code here:
              // TODO add your handling code here:
     }//GEN-LAST:event_down_chiffre_3ActionPerformed
 
     private void down_chiffre_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_down_chiffre_4ActionPerformed
- int valeurActuelle = Integer.parseInt(texte_chiffre_3.getText());
-        if (valeurActuelle > 0) {    // si on n'est pas déjà à 0
-    valeurActuelle--;        // on retire 1
-}
+jeu.diminuerChiffre(3);
+texte_chiffre_3.setText("" + jeu.getCombiTestee()[3]);
 
-texte_chiffre_3.setText(Integer.toString(valeurActuelle));     
+    
     }//GEN-LAST:event_down_chiffre_4ActionPerformed
 
     private void bouton_recommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_recommencerActionPerformed
@@ -266,12 +252,57 @@ texte_chiffre_0.setText("0");
 texte_chiffre_1.setText("0");
 texte_chiffre_2.setText("0");
 texte_chiffre_3.setText("0");// TODO add your handling code here:
+for (int i = 0; i < 5; i++) {
+        jeu.getCombiTestee()[i] = 0;
+    }
+
+    // Réinitialiser le score
+    score = 0;
+    texte_score.setText("" + score);
+
+    // Réinitialiser le nombre de tentatives
+    nbTentativesRestantes = 6;
+    texte_tentatives.setText("Tentatives restantes : " + nbTentativesRestantes);
+
+    // Réinitialiser les labels de comparaison
+    texte_nb_chiffres_exacts.setText("0");
+    texte_nb_chiffres_haut.setText("0");
+    texte_nb_chiffres_bas.setText("0");
+
+    // Générer une nouvelle combinaison secrète
+    jeu.genererCombiAleat();
+
     }//GEN-LAST:event_bouton_recommencerActionPerformed
 
     private void bouton_testerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_testerActionPerformed
-
+                                            
+    // Comparer la combinaison testée
     
-        // TODO add your handling code here:
+    // Vérifier si le joueur a encore des tentatives
+    if (nbTentativesRestantes > 0) {
+
+        int[] resultats = jeu.comparerCombi(); // renvoie [nbExact, nbTropHaut, nbTropBas]
+
+        // Met à jour les labels pour afficher le résultat
+        texte_nb_chiffres_exacts.setText("" + resultats[0]);
+        texte_nb_chiffres_haut.setText("" + resultats[1]);
+        texte_nb_chiffres_bas.setText("" + resultats[2]);
+
+        // Met à jour le score
+        score++;
+        texte_score.setText("" + score);
+
+        // Décrémente après l'affichage pour que la première tentative compte comme 1
+        nbTentativesRestantes--;
+        
+
+        // Si plus de tentatives, réinitialiser automatiquement
+        if (nbTentativesRestantes <= 0) {
+            bouton_recommencerActionPerformed(evt); // réinitialise tout
+        }
+    }
+
+
     }//GEN-LAST:event_bouton_testerActionPerformed
 
     /**
@@ -280,24 +311,6 @@ texte_chiffre_3.setText("0");// TODO add your handling code here:
     public static void main(String args[]) {
         
         
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(()->new principal_class().setVisible(true));
     }
 
@@ -326,5 +339,4 @@ texte_chiffre_3.setText("0");// TODO add your handling code here:
     private javax.swing.JButton up_chiffre_3;
     private javax.swing.JButton up_chiffre_4;
     // End of variables declaration//GEN-END:variables
-
 }
