@@ -7,8 +7,7 @@
  *
  * @author khalo
  */
-public class Partie {
-    Grille laGrille;
-    joueur leJoueur;
+public class joueur {
+    
     
 }
