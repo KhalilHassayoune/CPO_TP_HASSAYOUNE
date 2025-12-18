@@ -32,7 +32,7 @@ public String toString() {
     }
 }
 
-public CelluleLumineuse(boolean etat) {
+public void CelluleLumineuses(boolean etat) {
         this.etat = etat;
     }
 
