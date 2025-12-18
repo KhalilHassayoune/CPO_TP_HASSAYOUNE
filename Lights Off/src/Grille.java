@@ -45,6 +45,11 @@ int nbColonnes;
         activerColonneDeCellules(rand.nextInt(nbColonnes));
     } 
     else {
+        if (rand.nextBoolean()) {
+        this.activerDiagonaleDescendante();
+    } else {
+        this.activerDiagonaleMontante();
+    }
         
     }
 }
