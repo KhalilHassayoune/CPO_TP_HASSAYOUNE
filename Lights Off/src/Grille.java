@@ -10,7 +10,7 @@
 import java.util.Random;
 public class Grille {
    
-CelluleLumineuse[][] matriceCellules = new CelluleLumineuse[5][5];
+public CelluleLumineuse[][] matriceCellules;
 int nbLignes;
 int nbColonnes;
 
@@ -35,24 +35,16 @@ int nbColonnes;
     }
     public void activerLigneColonneOuDiagonaleAleatoire() {
     Random rand = new Random();
-    int choix = rand.nextInt(3);
-
-    if (choix == 0) {
-        
-        activerLigneDeCellules(rand.nextInt(nbLignes));
-    } 
-    else if (choix == 1) {
-        activerColonneDeCellules(rand.nextInt(nbColonnes));
-    } 
-    else {
-        if (rand.nextBoolean()) {
-        this.activerDiagonaleDescendante();
-    } else {
-        this.activerDiagonaleMontante();
-    }
-        
-    }
+   int l = rand.nextInt(nbLignes);
+    int c = rand.nextInt(nbColonnes);
+    this.matriceCellules[l][c].activerCellule();
+    if (l > 0) this.matriceCellules[l - 1][c].activerCellule();
+    if (l < nbLignes - 1) this.matriceCellules[l + 1][c].activerCellule();
+    if (c > 0) this.matriceCellules[l][c - 1].activerCellule();
+    if (c < nbColonnes - 1) this.matriceCellules[l][c + 1].activerCellule();
 }
+    
+
     public void melangerMatriceAleatoirement(int nbTours) {
    
     this.eteindreToutesLesCellules();
@@ -107,27 +99,28 @@ public boolean cellulesToutesEteintes() {
 }
     @Override
 public String toString() {
-    String res = "   "; // Espace initial pour décaler l'en-tête des colonnes
+    String res = "   "; 
 
-    // 1. Affichage des indices des colonnes
+    
     for (int j = 0; j < nbColonnes; j++) {
         res += j + " ";
     }
-    res += "\n"; // Retour à la ligne
+    res += "\n"; 
 
-    // 2. Affichage des lignes avec leurs indices
+    
     for (int i = 0; i < nbLignes; i++) {
-        res += i + " |"; // Indice de la ligne + séparateur visuel
+        res += i + " |"; 
         
         for (int j = 0; j < nbColonnes; j++) {
-            // Ici, on appelle le toString() de la CelluleLumineuse !
+            
             res += matriceCellules[i][j].toString() + " ";
         }
-        res += "\n"; // Fin de la ligne, on passe à la suivante
+        res += "\n"; 
     }
 
     return res;
 }
+
     }
 
        

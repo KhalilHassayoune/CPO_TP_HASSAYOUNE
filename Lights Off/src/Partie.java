@@ -17,43 +17,45 @@ public class Partie {
         this.grille = new Grille(5, 5);
     }
     public void initialiserPartie() {
-    
+    this.grille.eteindreToutesLesCellules();
     this.grille.melangerMatriceAleatoirement(10);
     
     
-    this.nbCoups = 0;
+    
 }
     public void lancerPartie() {
     Scanner sc = new Scanner(System.in);
     this.initialiserPartie();
-    System.out.println(grille.toString());
-        while (grille.cellulesToutesEteintes() == false) {
-        System.out.println("Entrez votre coup (ex: L0 pour ligne 0, C1 pour colonne 1, D pour diagonale) :");
-        String saisie = sc.nextLine();
-
-        // Analyse de la saisie et activation
-        if (saisie.startsWith("L")) {
-            int i = Integer.parseInt(saisie.substring(1));
-            grille.activerLigneDeCellules(i);
-        } else if (saisie.startsWith("C")) {
-            int j = Integer.parseInt(saisie.substring(1));
-            grille.activerColonneDeCellules(j);
-        } else if (saisie.equals("D1")) {
-            grille.activerDiagonaleDescendante();
-        } else if (saisie.equals("D2")) {
-            grille.activerDiagonaleMontante();
+    
+        while (!grille.cellulesToutesEteintes()) {
+        System.out.println(grille);
+        System.out.println("Entrez la ligne (0-4) :");
+     int l = sc.nextInt();
+        System.out.println("Entrez la colonne (0-4) :");
+        int c = sc.nextInt();
+grille.matriceCellules[l][c].activerCellule();
+        
+        if (l > 0) { 
+            grille.matriceCellules[l - 1][c].activerCellule(); 
         }
-
+        if (l < grille.nbLignes - 1) { 
+            this.grille.matriceCellules[l + 1][c].activerCellule(); 
+        }
+        if (c > 0) { 
+            this.grille.matriceCellules[l][c - 1].activerCellule(); 
+        }
+        if (c < grille.nbColonnes - 1) { 
+            this.grille.matriceCellules[l][c + 1].activerCellule(); 
+        }
+        System.out.println(grille);
         
-        this.nbCoups++;
-        System.out.println("Coups joués : " + this.nbCoups);
-
+      
         
-        System.out.println(grille.toString());
+      
     }
 
     
-    System.out.println("Partie terminée ! Nombre total de coups : " + this.nbCoups);
+
 }
 }
     

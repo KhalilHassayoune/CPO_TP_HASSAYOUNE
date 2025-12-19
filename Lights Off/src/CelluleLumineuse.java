@@ -22,7 +22,7 @@ public void eteindreCellule() {
     this.etat = false; 
 }
 public void activerCellule() {
-    this.etat = true; 
+    this.etat = !this.etat; 
 }
 public String toString() {
     if (this.etat == true) {
