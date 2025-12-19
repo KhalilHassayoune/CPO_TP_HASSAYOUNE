@@ -93,6 +93,11 @@ q.melangerReponses();
         FEEDBACK.setText("FEEDBACK");
 
         Question_suivante.setText("Question suivante");
+        Question_suivante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Question_suivanteActionPerformed(evt);
+            }
+        });
 
         score.setText("score");
 
@@ -159,6 +164,10 @@ q.melangerReponses();
       // TODO add your handling code here:
     }//GEN-LAST:event_Proposition3ActionPerformed
 
+    private void Question_suivanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Question_suivanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Question_suivanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,4 +207,4 @@ q.melangerReponses();
     private void afficherQuestionCourante() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-}
+
